@@ -1,12 +1,22 @@
-const { create } = require("../model/post");
-
-const posts = [];
+const { create, findAll, findOne } = require("../model/post");
 
 exports.allPosts = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    posts,
-  });
+  try {
+    const posts = findAll();
+    res.status(200).json({
+      status: "success",
+      results: posts.length,
+      posts:
+          Object.keys(req?.query).length > 0
+            ? posts.slice(req.query.offset, req.query.limit)
+            : posts,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "error",
+      message: err.message,
+    });
+  }
 };
 
 exports.createPost = (req, res) => {
@@ -17,7 +27,7 @@ exports.createPost = (req, res) => {
 
     res.status(201).json({
       status: "success",
-      newPost
+      post: newPost,
     });
   } catch (err) {
     res.status(400).json({
@@ -30,7 +40,8 @@ exports.createPost = (req, res) => {
 exports.singlePost = (req, res) => {
   try {
     const { id } = req.params;
-    const post = posts.find((post) => post.id === Number(id));
+    const post = findOne({ id });
+
     if (post) {
       res.status(200).json({
         status: "success",
