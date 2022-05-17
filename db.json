@@ -187,7 +187,22 @@
       "createdAt": 1652795817381,
       "title": "title1",
       "content": "content1",
-      "comments": []
+      "comments": [
+        {
+          "id": "TPI_cpcimcPFBvrkHs6Eo",
+          "createdAt": 1652805409221,
+          "userName": "Ibrahim Kholil",
+          "comment": "This is a bad comment",
+          "parentId": null
+        },
+        {
+          "id": "TuKi9taTvfaaI6_zxnzay",
+          "createdAt": 1652805419032,
+          "userName": "Ibrahim Kholil",
+          "comment": "This is a bad comment",
+          "parentId": null
+        }
+      ]
     }
   ]
 }
