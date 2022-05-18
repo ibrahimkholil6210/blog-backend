@@ -4,7 +4,7 @@
   "description": "blog backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Ibrahim",
   "license": "MIT",
@@ -12,9 +12,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
     "nanoid": "^3.3.4"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.16"
-  }
+  "devDependencies": {}
 }
