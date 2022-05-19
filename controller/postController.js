@@ -1,15 +1,15 @@
 const { create, findAll, findOne } = require("../model/post");
 
 exports.allPosts = (req, res) => {
+  const offset = req.query.offset * 1 || 0;
+  const limit = req.query.limit * 1 || 10;
+
   try {
     const posts = findAll();
     res.status(200).json({
       status: "success",
       results: posts.length,
-      posts:
-          Object.keys(req?.query).length > 0
-            ? posts.slice(req.query.offset, req.query.limit)
-            : posts,
+      posts: posts.slice(offset, offset + limit),
     });
   } catch (err) {
     res.status(400).json({
