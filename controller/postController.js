@@ -21,8 +21,9 @@ exports.allPosts = (req, res) => {
 
 exports.createPost = (req, res) => {
   try {
-    const { title, content } = req.body;
-    const post = { title, content };
+    const { title, content, date } = req.body;
+    const post = { title, content, date };
+    console.log(post)
     const newPost = create(post);
 
     res.status(201).json({
