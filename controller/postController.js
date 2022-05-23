@@ -1,4 +1,4 @@
-const { create, findAll, findOne } = require("../model/post");
+const { create, findAll, findOne, createComment } = require("../model/post");
 
 exports.allPosts = (req, res) => {
   const offset = req.query.offset * 1 || 0;
@@ -23,7 +23,7 @@ exports.createPost = (req, res) => {
   try {
     const { title, content, date } = req.body;
     const post = { title, content, date };
-    console.log(post)
+    console.log(post);
     const newPost = create(post);
 
     res.status(201).json({
@@ -54,6 +54,23 @@ exports.singlePost = (req, res) => {
         message: "Post not found",
       });
     }
+  } catch (err) {
+    res.status(400).json({
+      status: "error",
+      message: err.message,
+    });
+  }
+};
+
+exports.addComment = (req, res) => {
+  try {
+    const { comment, userName, parentId } = req.body;
+    const pId = req.params.id;
+    const newComment = createComment({ comment, userName, parentId }, pId);
+    res.status(201).json({
+      status: "success",
+      comment: newComment,
+    });
   } catch (err) {
     res.status(400).json({
       status: "error",

@@ -10,4 +10,6 @@ router
 
 router.route("/:id").get(postController.singlePost);
 
+router.route('/:id/comments').post(postController.addComment);
+
 module.exports = router;
