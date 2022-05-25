@@ -23,7 +23,6 @@ exports.createPost = (req, res) => {
   try {
     const { title, content, date } = req.body;
     const post = { title, content, date };
-    console.log(post);
     const newPost = create(post);
 
     res.status(201).json({

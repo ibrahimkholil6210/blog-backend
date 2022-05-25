@@ -19,7 +19,6 @@ const create = (post) => {
 const createComment = (inputComment,pId) => {
   const newComment = { id: nanoid(), createdAt: Date.now(), userName: inputComment.userName, comment: inputComment.comment, parentId: inputComment.parentId }
   let comments = db.get('posts').find({ id: pId }).get('comments').value()
-  console.log({inputComment,pId,comments})
   comments.push(newComment)
   db.get('posts').find({ id: pId }).set('comments', comments).write()
   return newComment
