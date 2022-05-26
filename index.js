@@ -9,7 +9,7 @@ app.use(express.json({ limit: '10kb' }));
 app.use(morgan('dev'))
 
 app.use("/api/v1/posts", postsRoute);
-app.use("*", (req, res) => {
+app.all("*", (req, res) => {
   res.status(404).json({
     status: 404,
     error: `Can't find ${req.originalUrl} on this server`,
